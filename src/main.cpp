@@ -140,7 +140,7 @@ int main()
         // displays start tile
         DisplayTile(Map[PlayX][PlayY]);
 
-        // Main game loop
+        //Main game loop
         while (true)
         {
             if (_player->getPoints() < 0)
