@@ -1,4 +1,12 @@
 # T2DO
+## Revision 
+- [stefan] keep turn-based combat, RNG 
+- [stefan] new player classes: warrior, mage, rogue, knight 
+- [liam] enemy classes -> maze 
+- [francis] inventory, money from killing, shop to upgrade stats, keep casino :) 
+- primary, secondary + potions (shit to collect) 
+- singleplayer then multiplayer 
+- 2D game engine 
 #### High Priority
 - [ ] Refactoring, standarize, includes, condense code, ternary operator
 - [ ] Trickster player class implementation with map
