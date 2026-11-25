@@ -1,7 +1,7 @@
-#include "trickster.h"
-#include "gate.h"
-#include "warden.h"
-#include "player.h"
+#include "include/trickster.h"
+#include "include/gate.h"
+#include "include/warden.h"
+#include "include/player.h"
 
 int Trickster::getDefaultShadowShiftUses()
 {

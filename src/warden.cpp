@@ -1,8 +1,8 @@
-#include "warden.h"
-#include "player.h"
-#include "guardian.h"
-#include "ravager.h"
-#include "trickster.h"
+#include "include/warden.h"
+#include "include/player.h"
+#include "include/guardian.h"
+#include "include/ravager.h"
+#include "include/trickster.h"
 
 Warden::Warden()
 {

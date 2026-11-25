@@ -1,5 +1,5 @@
-#include "gate.h"
-#include "maze.h"
+#include "include/gate.h"
+#include "include/maze.h"
 
 int Gate::getPointsValue()
 {

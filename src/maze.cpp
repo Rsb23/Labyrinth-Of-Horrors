@@ -1,5 +1,5 @@
-#include "Maze.h"
-#pragma once
+#include "include/maze.h"
+
 //tdo, fix maze movement, fix maze display
 Maze::Maze(){
     maze = vector<vector<vector<bool>>>(10,vector<vector<bool>>(10,vector<bool>(7, false)));
@@ -9,7 +9,6 @@ Maze::Maze(){
     playerTile = currentTile;
 
     GenerateMaze();
-
 }
 
 Maze::Maze(int x, int y){
@@ -48,11 +47,7 @@ bool Maze::IsInitialized(vector<bool> tile){
 
 //Randomly places the finish in one of the corners that are not the starting tile
 void Maze::GenerateFinish(){
-    random_device rand;
-    mt19937 gen(rand());
-    uniform_int_distribution choice(0,2);
-
-    switch(choice(gen)){
+    switch(_randomGenerator.generateRandomBinaryChoice()){
         //Top right corner
         case 0: maze[maze.size()-1][0][6] = true;
         //Bottom left corner
@@ -65,13 +60,11 @@ void Maze::GenerateFinish(){
 
 //rolls a 1/3 chance to place a gate on each tile, tiles have either a gate, a warden, the finish, or nothing
 void Maze::GenerateGates(){
-    random_device rand;
-    mt19937 gen(rand());
-    uniform_int_distribution choice(0,2);
+    const int choice {_randomGenerator.generateRandomBinaryChoice()};
 
     for(int x = 0; x<maze.size()-1; x++){
         for(int y = 0; y<maze.size()-1; y++){
-            if((choice(gen) == 2 && !(maze[x][y][5] || maze[x][y][6])) && (x || y)){
+            if((choice == 2 && !(maze[x][y][5] || maze[x][y][6])) && (x || y)){
                 maze[x][y][4] = true;
             }
         }
@@ -80,13 +73,11 @@ void Maze::GenerateGates(){
 
 //rolls a 1/10 chance to place a warden on each tile, tiles have either a gate, a warden, or the finish
 void Maze::GenerateWardens(){
-    random_device rand;
-    mt19937 gen(rand());
-    uniform_int_distribution choice(0,9);
+    const int choice {_randomGenerator.generateRandomZeroTenChoice()};
 
     for(int x = 0; x<maze.size()-1; x++){
         for(int y = 0; y<maze.size()-1; y++){
-            if((choice(gen) == 9 && !(maze[x][y][4] || maze[x][y][6])) && (x || y)){
+            if((choice == 9 && !(maze[x][y][4] || maze[x][y][6])) && (x || y)){
                 maze[x][y][5] = true;
             }
         }
@@ -94,12 +85,8 @@ void Maze::GenerateWardens(){
 }
 
 void Maze::GenerateMaze(){
-
     point previousTile;
     pathStack.push_back(currentTile);
-    random_device rd;
-    mt19937 gen(rd());
-
 
     while (!pathStack.empty()){
         if(!((currentTile.x)-1 < 0) && !(IsInitialized(maze[currentTile.x-1][currentTile.y]))){
@@ -117,42 +104,32 @@ void Maze::GenerateMaze(){
         
 
         if(!selectionStack.empty()){
-        previousTile = currentTile;
-        uniform_int_distribution choice(0,static_cast<int>(selectionStack.size()-1));
-        currentTile = selectionStack[choice(gen)];
-        pathStack.push_back(currentTile);
+            previousTile = currentTile;
+            const int choice {_randomGenerator.generateRandom(0, static_cast<int>(selectionStack.size() - 1))};
+            currentTile = selectionStack[choice];
+            pathStack.push_back(currentTile);
 
-        if(currentTile.x - previousTile.x > 0){
-
-            //Moved Right, give a Left path to current tile and Right path to previous
-            maze[previousTile.x][previousTile.y][0] = true;
-            maze[currentTile.x][currentTile.y][1] = true;
-
-        } else if (currentTile.x - previousTile.x < 0){
-
-            //Moved Left, give a Right path to current tile and Left path to previous
-            maze[previousTile.x][previousTile.y][1] = true;
-            maze[currentTile.x][currentTile.y][0] = true;
-
-        } else if(currentTile.y - previousTile.y > 0){
-
-            //Moved Down, give an Up path to current tile and Down path to previous
-            maze[previousTile.x][previousTile.y][2] = true;
-            maze[currentTile.x][currentTile.y][3] = true;
-
-        } else if(currentTile.y - previousTile.y < 0){
-
-            //Moved Up, give a Down path to current tile, and Up path to previous
-            maze[previousTile.x][previousTile.y][3] = true;
-            maze[currentTile.x][currentTile.y][2] = true;
-
-        }
+            if(currentTile.x - previousTile.x > 0){
+                //Moved Right, give a Left path to current tile and Right path to previous
+                maze[previousTile.x][previousTile.y][0] = true;
+                maze[currentTile.x][currentTile.y][1] = true;
+            } else if (currentTile.x - previousTile.x < 0){
+                //Moved Left, give a Right path to current tile and Left path to previous
+                maze[previousTile.x][previousTile.y][1] = true;
+                maze[currentTile.x][currentTile.y][0] = true;
+            } else if(currentTile.y - previousTile.y > 0){
+                //Moved Down, give an Up path to current tile and Down path to previous
+                maze[previousTile.x][previousTile.y][2] = true;
+                maze[currentTile.x][currentTile.y][3] = true;
+            } else if(currentTile.y - previousTile.y < 0){
+                //Moved Up, give a Down path to current tile, and Up path to previous
+                maze[previousTile.x][previousTile.y][3] = true;
+                maze[currentTile.x][currentTile.y][2] = true;
+            }
 
         } else {
-        pathStack.pop_back();
-        if(!pathStack.empty()){
-        currentTile = pathStack[pathStack.size()-1];
-        }
+            pathStack.pop_back();
+            if(!pathStack.empty()) currentTile = pathStack[pathStack.size()-1];
         }
 
         selectionStack.clear();
@@ -161,8 +138,6 @@ void Maze::GenerateMaze(){
     GenerateFinish();
     GenerateGates();
     GenerateWardens();
-        
-
 }
 
 void Maze::DisplayTile(vector<bool> tile){

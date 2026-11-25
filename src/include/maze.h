@@ -2,6 +2,8 @@
 #include <vector>
 #include <random>
 #include <iostream>
+#include "random_generator.h"
+
 using namespace std;
 
 struct point{
@@ -16,6 +18,7 @@ class Maze{
     vector<point> selectionStack;
     point currentTile;
     point playerTile;
+    RandomGenerator _randomGenerator;
 
     bool IsInitialized(vector<bool>);
     void GenerateFinish();
@@ -27,7 +30,7 @@ class Maze{
     Maze();
     Maze(int, int);
     Maze(size_t);
-    Maze(int, int,size_t);
+    Maze(int, int, size_t);
 
     void DisplayTile(vector<bool>);
     void DisplayPlayerTile();
@@ -36,5 +39,4 @@ class Maze{
     void MoveBack();
     void ClearGate();
     void ClearWarden();
-
 };

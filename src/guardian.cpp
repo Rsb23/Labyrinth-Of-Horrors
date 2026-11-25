@@ -1,7 +1,7 @@
-#include "guardian.h"
-#include "gate.h"
-#include "warden.h"
-#include "player.h"
+#include "include/guardian.h"
+#include "include/gate.h"
+#include "include/warden.h"
+#include "include/player.h"
 
 int Guardian::getLives()
 {

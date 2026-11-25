@@ -1,7 +1,7 @@
-#include "ravager.h"
-#include "gate.h"
-#include "warden.h"
-#include "player.h"
+#include "include/ravager.h"
+#include "include/gate.h"
+#include "include/warden.h"
+#include "include/player.h"
 
 int Ravager::getDefaultCC()
 {

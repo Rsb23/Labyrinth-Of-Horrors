@@ -1,8 +1,7 @@
-#include "player.h"
-#include "gate.h"
-#include "warden.h"
-#include "store.h"
-#include "maze.h"
+#include "include/player.h"
+#include "include/gate.h"
+#include "include/warden.h"
+#include "include/maze.h"
 
 // getters and setters
 int Player::getPoints()

@@ -1,4 +1,4 @@
-#include "store.h"
+#include "include/store.h"
 
 void Store::drawSlotSquares(int number) {
     std::cout << "+---+" << std::endl; //top border

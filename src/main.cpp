@@ -1,31 +1,21 @@
-#include "maze.cpp"
-#include "player.cpp"
-#include "guardian.cpp"
-#include "ravager.cpp"
-#include "trickster.cpp"
-#include "store.cpp"
-#include "gate.cpp"
-#include "warden.cpp"
+#include "include/player.h"
+#include "include/store.h"
+#include "include/guardian.h"
+#include "include/ravager.h"
 
 int main()
 {
-    srand(time(0));
-    Store store;
     char move;
     char engage;
     bool win = false;
+
     Player * _player;
-    
-    //Create the maze
     Maze maze;
-    // Create Store class
     Store _store;
 
-    // player class selection loop
     int classSel{0};
     while (!win)
     {
-
         while (true)
         {
             std::cout << "Please Choose Player Class\n";
@@ -87,7 +77,7 @@ int main()
         // displays start tile
         maze.DisplayPlayerTile();
 
-        //Main game loop
+        // Main game loop
         while (true)
         {
             if (_player->getPoints() < 0)
@@ -98,13 +88,11 @@ int main()
 
             char input{'e'};
 
-            // read player input (either direction, entering store, or exiting program)
             std::cout << "Enter A Direction (w a s d), Enter The Store (b), or Exit (e): ";
             std::cin >> input;
 
             if (input == 'b')
             {
-                Store _store;
                 _store.storeMenu(*_player);
                 maze.DisplayPlayerTile();
             }
