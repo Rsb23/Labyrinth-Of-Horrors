@@ -87,7 +87,7 @@ int main()
         // displays start tile
         maze.DisplayPlayerTile();
 
-        // Main game loop
+        //Main game loop
         while (true)
         {
             if (_player->getPoints() < 0)

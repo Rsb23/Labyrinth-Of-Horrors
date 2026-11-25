@@ -1,19 +1,26 @@
-#### Fixes (High Priority)
-- [x] undefined behaviour segmenation fault on vector
-- [ ] new name (Labyrinth of Horrors)
+# T2DO
+## Revision 
+- [stefan] keep turn-based combat, RNG 
+- [stefan] new player classes: warrior, mage, rogue, knight 
+- [liam] enemy classes -> maze 
+- [francis] inventory, money from killing, shop to upgrade stats, keep casino :) 
+- primary, secondary + potions (shit to collect) 
+- singleplayer then multiplayer 
+- 2D game engine 
+#### High Priority
 - [ ] Refactoring, standarize, includes, condense code, ternary operator
 - [ ] Trickster player class implementation with map
 - [ ] Redesign of CLI, newlines, text bars, console flush
 - [ ] loose condition while engaged with enemies
 - [ ] warden -> guardian
 
-#### Additions (Low Priority)
+#### Low Priority
 - [ ] Hidden Room(s)
-    - different type of minigame
     - unlocked by mysterious key which can be bought in shop
     - power-up
-- [ ] change main game loop with minigames for gates and wardens
-- [ ] "Upgrades people, Upgrades" -> player classes, points multiplyer?
-- [ ] chess minigame, letter representation
-- [ ] ball -> cup reaction minigame
+- [ ] add minigames for gates and wardens
+    - [ ] countries
+    - [ ] chess, letter representation
+    - [ ] ball -> cup reaction
+- [ ] allow player to buy capacity upgrades for their player type
 - [ ] networking, multi-player support
